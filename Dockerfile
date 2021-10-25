@@ -11,10 +11,10 @@ RUN ln -sf /dev/stdout /var/log/nginx/access.log \
 # copy source and install dependencies
 RUN mkdir -p /opt/app
 RUN mkdir -p /opt/app/pip_cache
-RUN mkdir -p /opt/app/django-project-1
+RUN mkdir -p /opt/app/tømmerbob
 COPY requirements.txt start-server.sh /opt/app/
 COPY .pip_cache /opt/app/pip_cache/
-COPY django-project-1 /opt/app/django-project-1/
+COPY tømmerbob /opt/app/tømmerbob/
 WORKDIR /opt/app
 RUN pip install -r requirements.txt --cache-dir /opt/app/pip_cache
 RUN chown -R www-data:www-data /opt/app
