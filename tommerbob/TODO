@@ -1,0 +1,4 @@
+- Login skal afskaffes og erstattes med et logo / profil billede som bare skal klikkes på
+(DONE) - detail.html skal laves om så der er increment knapper + - og ikke et input
+- Statistik
+- Grafer (Forbrug samlet og hver person, eventuelt inde på Account)

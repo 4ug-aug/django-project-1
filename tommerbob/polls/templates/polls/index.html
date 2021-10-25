@@ -2,21 +2,43 @@
 
 {% block content %}    
 
+
 {% if beverage_list %}
+<div class="grid-container">
     {% for beverage in beverage_list %}
-    <div class="card" style="width: 18rem;">
+    <div class="card" style="width: 30rem;">
       <img class="card-img-top" src="{{ beverage.image.url }}" alt="{{ beverage.image.url }}">
-      <div class="card-body">
+      <div class="card-body text-center">
         <h5 class="card-title">{{ beverage.title }}</h5>
         <p class="card-text">{{ beverage.desc }}</p>
         <p class="card-text">Price - {{ beverage.price }}</p>
         <a href="/{{ beverage.id }}/" class="btn btn-primary">Buy Now</a>
       </div>
     </div>
-  </div>
     {% endfor %}
+</div>
 {% else %}
     <p>No beverages registered.</p>
 {% endif %}
+
+<style>
+
+img {
+  width: auto;
+}
+
+.card {
+  margin: 1rem;
+  padding: 1rem;
+}
+
+.grid-container {
+  align-items: center;
+  display: inline-grid;
+  grid-template-columns: auto auto auto;
+  padding: 5px;
+}
+
+</style>
 
 {% endblock %}

@@ -2,16 +2,67 @@
 
 {% block content %}    
 
+<div class="centering">
 <h1>{{ beverage.title }}</h1>
 <img src="{{ beverage.image.url }}" alt="{{ beverage.image.url }}">
 <form action="{% url 'polls:new_order' beverage.id %}" method="post">
     {% csrf_token %}
     <fieldset>
         {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-        <label for="amount">Amount</label><br>
-        <input type="text" name="amount" id="amount" placeholder="0000">
+        <h5>Amount</h5>
+        <div class="minus-btn btn btn-primary">-</div>
+        <input type="text" name="amount" id="amount" value="1">
+        <div class="plus-btn btn btn-primary">+</div>
     </fieldset>
-    <input type="submit" value="submit">
+    <input class="btn btn-primary" type="submit" value="submit">
     </form>
+</div>
+
+<style>
+.centering {
+    text-align: center;
+}
+
+input {
+    text-align: center;
+}
+
+.plus-btn {
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.minus-btn {
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+</style>
+
+<script type="text/javascript">
+
+document.querySelector(".plus-btn").addEventListener("click", function() {
+
+    var amount
+
+    amount = document.getElementById("amount").value;
+    amount ++;
+    document.getElementById("amount").value = amount
+
+
+})
+
+document.querySelector(".minus-btn").addEventListener("click", function() {
+
+    var amount
+
+    amount = document.getElementById("amount").value;
+    amount --;
+    document.getElementById("amount").value = amount
+
+
+})
+
+</script>
 
 {% endblock %}
