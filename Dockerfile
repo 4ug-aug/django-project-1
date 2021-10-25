@@ -18,6 +18,11 @@ COPY tømmerbob /opt/app/tømmerbob/
 WORKDIR /opt/app
 RUN pip install -r requirements.txt --cache-dir /opt/app/pip_cache
 RUN chown -R www-data:www-data /opt/app
+RUN cd /opt/app/tømmerbob/
+RUN python manage.py makemigrations
+RUN python manage.py migrate
+
+
 
 # start server
 EXPOSE 8020
