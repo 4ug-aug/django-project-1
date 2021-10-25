@@ -1,0 +1,17 @@
+{% extends "polls/header.html" %}
+
+{% block content %}    
+
+<h1>{{ beverage.title }}</h1>
+<img src="{{ beverage.image.url }}" alt="{{ beverage.image.url }}">
+<form action="{% url 'polls:new_order' beverage.id %}" method="post">
+    {% csrf_token %}
+    <fieldset>
+        {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+        <label for="amount">Amount</label><br>
+        <input type="text" name="amount" id="amount" placeholder="0000">
+    </fieldset>
+    <input type="submit" value="submit">
+    </form>
+
+{% endblock %}

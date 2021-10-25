@@ -1,0 +1,22 @@
+{% extends "polls/header.html" %}
+
+{% block content %}    
+
+{% if beverage_list %}
+    {% for beverage in beverage_list %}
+    <div class="card" style="width: 18rem;">
+      <img class="card-img-top" src="{{ beverage.image.url }}" alt="{{ beverage.image.url }}">
+      <div class="card-body">
+        <h5 class="card-title">{{ beverage.title }}</h5>
+        <p class="card-text">{{ beverage.desc }}</p>
+        <p class="card-text">Price - {{ beverage.price }}</p>
+        <a href="/{{ beverage.id }}/" class="btn btn-primary">Buy Now</a>
+      </div>
+    </div>
+  </div>
+    {% endfor %}
+{% else %}
+    <p>No beverages registered.</p>
+{% endif %}
+
+{% endblock %}

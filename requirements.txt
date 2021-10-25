@@ -1,0 +1,3 @@
+Django
+django-mysql
+django-crispy-forms

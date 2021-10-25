@@ -1,0 +1,37 @@
+{% extends "polls/header.html" %}
+
+{% block content %}
+
+{% if order_list %}
+
+<h5 class="card-title">Total Orders: {{ total_orders }}</h5>
+<h5 class="card-title">Current Account Credit: {{ credit }} kr</h5>
+
+<div>
+<body style="font-family:'Helvetica Neue', Arial; font-size: 16px;">
+	<h3>{{ chartTitle|safe }}</h3>
+	<div id="chart-1">{{ output|safe }}</div>
+	<div id="chart-2">{{ output_2|safe }}</div>
+	<br/>
+	<a href="/">Back</a>
+</div>
+
+<div>
+    <ul>
+        {% for order_ in order_list %}
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">{{ order_.order.title }}</h5>
+            <p class="card-text">Amount: {{ order_.quantity }}</p>
+            <p class="card-text">Total Price: {{ order_.price }}</p>
+            <p class="card-text">Date Ordered: {{ order_.date }}</p>
+          </div>
+        </div>
+        {% endfor %}
+    </ul>
+</div>
+{% else %}
+    <p>No orders registered.</p>
+{% endif %}
+
+{% endblock %}
