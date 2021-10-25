@@ -2,3 +2,4 @@ Django
 django-mysql
 django-crispy-forms
 Pillow
+gunicorn
