@@ -56,10 +56,12 @@ document.querySelector(".minus-btn").addEventListener("click", function() {
 
     var amount
 
+    
     amount = document.getElementById("amount").value;
+    if (amount > 0) {
     amount --;
     document.getElementById("amount").value = amount
-
+    }
 
 })
 
