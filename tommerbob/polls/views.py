@@ -7,13 +7,13 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 
+import logging
+logging.basicConfig(level=logging.INFO) # Here
+
 from .models import *
 
 # Create your views here.
 from django.http import HttpResponse
-
-def home(request):
-    return render(request, 'polls/home.html')
 
 # @login_required(login_url="login")
 def index(request):
@@ -48,23 +48,31 @@ def beverage_details(request, beverage_id):
         raise Http404("Beverage does not exist")
     return render(request, 'polls/detail.html', {'beverage': beverage})
 
-def login_request(request):
-	if request.method == "POST":
-		form = AuthenticationForm(request, data=request.POST)
-		if form.is_valid():
-			username = form.cleaned_data.get('username')
-			password = form.cleaned_data.get('password')
-			user = authenticate(username=username, password=password)
-			if user is not None:
-				login(request, user)
-				messages.info(request, f"You are now logged in as {username}.")
-				return redirect("/")
-			else:
-				messages.error(request,"Invalid username or password.")
-		else:
-			messages.error(request,"Invalid username or password.")
-	form = AuthenticationForm()
-	return render(request=request, template_name="polls/login.html", context={"login_form":form})
+def login_request(request, bruger_id):
+    if request.method == "POST":
+        logging.info("Got post request")
+        username = Bruger.objects.get(pk=bruger_id).user_profile
+        password = "tivoli123"
+        user = authenticate(username=username, password=password)
+        logging.info(user)
+        if user is not None:
+            login(request, user)
+            logging.info(request, f"You are now logged in as {username}.")
+            return redirect("/")
+        else:
+            logging.error(request,"Invalid username or password.")
+    else:
+        logging.error(request,"Invalid username or password.")
+
+    return redirect("/")
+
+def brugere(request):
+    bruger_list = Bruger.objects.all()
+    context = {
+        'bruger_list': bruger_list
+    }
+    return render(request=request, template_name="polls/login.html", context=context)
+
 
 def logout_view(request):
     logout(request)

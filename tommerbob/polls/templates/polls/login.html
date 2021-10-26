@@ -1,17 +1,46 @@
 {% extends "polls/header.html" %}
 
-{% block content %}      
+{% block content %}    
 
-{% load crispy_forms_tags %}
-
-<!--Login--> 
-<div class="container py-5">
-  <h1>Login</h1>
-  <form method="POST">
-    {% csrf_token %}
-    {{ login_form|crispy }}
-    <button class="btn btn-primary" type="submit">Login</button>
-  </form>
+{% if bruger_list %}
+<div class="grid-container">
+    {% for bruger in bruger_list %}
+    <div class="card" style="width: 20rem;">
+      <!-- ADD IMAGE PROPERTY TO BRUGER OBJECT -->
+      <!-- <img class="card-img-top" src="{{ beverage.image.url }}" alt="{{ beverage.image.url }}"> -->
+      <form action="{% url 'polls:login_request' bruger.id %}" method="post">
+        {% csrf_token %}
+        <fieldset>
+            {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+            <h5>{{ bruger.name }}</h5>
+        </fieldset>
+        <input class="btn btn-primary" type="submit" value="Login">
+        </form>
+      </div>
+    </div>
+    {% endfor %}
 </div>
+{% else %}
+    <p>No users registered.</p>
+{% endif %}
+
+<style>
+
+  img {
+    width: auto;
+  }
+  
+  .card {
+    margin: 2rem;
+  }
+  
+  .grid-container {
+    align-items: center;
+    display: inline-grid;
+    grid-template-columns: auto auto auto;
+    padding: 5px;
+  }
+  
+  </style>
 
 {% endblock %}

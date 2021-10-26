@@ -14,7 +14,8 @@ urlpatterns = [
     path('account', views.account, name='account'),
     path('<int:beverage_id>/', views.beverage_details, name='detail'),
     path('<int:beverage_id>/new_order/', views.new_order, name="new_order"),
-    path('login', views.login_request, name="login"),
+    path('login', views.brugere, name="brugere"),
+    path('<int:bruger_id>/login_request/', views.login_request, name="login_request"),
     path('logout', views.logout_view, name="logout"),
 ]
 
