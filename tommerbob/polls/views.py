@@ -52,7 +52,7 @@ def login_request(request, bruger_id):
     if request.method == "POST":
         logging.info("Got post request")
         username = Bruger.objects.get(pk=bruger_id).user_profile
-        password = "tivoli123"
+        password = "password"
         user = authenticate(username=username, password=password)
         logging.info(user)
         if user is not None:

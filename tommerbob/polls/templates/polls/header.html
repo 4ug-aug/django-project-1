@@ -17,11 +17,11 @@
  <body>
   {% if user.is_authenticated %}
 
-    <center><h4>Logget ind som {{ user.get_username }} <br></br> <a class="btn btn-primary" type="submit", href="/home">Home</a> - <a class="btn btn-primary" type="submit", href="/account">Account</a> - <a class="btn btn-primary" type="submit", href="/logout">Logout</a></h4></center>
+    <center><h4>Logget ind som {{ user.get_username }} <br></br> <a class="btn btn-primary" type="submit", href="/">Home</a> - <a class="btn btn-primary" type="submit", href="/account">Account</a> - <a class="btn btn-primary" type="submit", href="/logout">Logout</a></h4></center>
 
   {% else %}
 
-    <center><h4>Ikke logget ind <br></br> <a class="btn btn-primary" type="submit", href="login">Login</a></h4></center>
+    <center><h4>Ikke logget ind <br></br> <a class="btn btn-primary" type="submit", href="login">Login</a> - <a class="btn btn-primary" type="submit", href="/">Home</a></h4></center>
 
   {% endif %}
 
